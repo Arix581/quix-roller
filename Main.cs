@@ -1,7 +1,5 @@
-
-
 // Made by Benjamin Espenschied
-// V1.2
+// V1.3
 
 using System;
 
@@ -39,17 +37,38 @@ namespace myProgram
                         };
                         break;
                     case "yellow":
-                        yellowDice.status = "disabled";
-                        Console.WriteLine("Yellow has been Disabled!");
+                        if (yellowDice.status == "active"){
+                            yellowDice.status = "disabled";
+                            Console.WriteLine("Yellow has been Disabled!");
+                        } else {
+                            yellowDice.status = "active";
+                            Console.WriteLine("Yellow has been Activated!");
+                        };
                         break;
-                    case "greem":
-                        greenDice.status = "disabled";
-                        Console.WriteLine("Green has been Disabled!");
+                    case "green":
+                        if (greenDice.status == "active"){
+                            greenDice.status = "disabled";
+                            Console.WriteLine("Green has been Disabled!");
+                        } else {
+                            greenDice.status = "active";
+                            Console.WriteLine("Green has been Activated!");
+                        };
                         break;
                     case "blue":
-                        blueDice.status = "disabled";
-                        Console.WriteLine("Blue has been Disabled!");
+                        if (blueDice.status == "active"){
+                            blueDice.status = "disabled";
+                            Console.WriteLine("Blue has been Disabled!");
+                        } else {
+                            blueDice.status = "active";
+                            Console.WriteLine("Blue has been Activated!");
+                        };
                         break;
+                    case "activate":
+                        redDice.status = "active";
+                        yellowDice.status = "active";
+                        greenDice.status = "active";
+                        blueDice.status = "active";
+                        Console.WriteLine("All are now active")
                     case "no":
                         Console.WriteLine("Well, I will go now.");
                         Console.ReadLine();
