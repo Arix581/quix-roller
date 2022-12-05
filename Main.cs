@@ -13,85 +13,93 @@ namespace myProgram
             string keepGoing = "yes";
             
             // Set up dice
-            Dice redDice = new Dice(6, "f");
-            Dice yellowDice = new Dice(6, "f");
-            Dice greenDice = new Dice(6, "b");
-            Dice blueDice = new Dice(6, "b");
-            Dice whiteDice1 = new Dice(6, "f");
-            Dice whiteDice2 = new Dice(6, "f");
+            Dice[] allDice = new Dice[6];
+            allDice[0] = new Dice(6, "f", "red");
+            allDice[1] = new Dice(6, "f", "yellow");
+            allDice[2] = new Dice(6, "b", "green");
+            allDice[3] = new Dice(6, "b", "blue");
+            allDice[4] = new Dice(6, "f", "1st white");
+            allDice[5] = new Dice(6, "f", "2nd white");
             
-            // Introductions
-            Console.WriteLine("Hello! My name is Josh. I help work the Quixx dice. If \nYou want to roll the dice, just press enter. Typing \nin a dice color or no, then it will disable that \ndice or stop the program. Go ahead! Give it a shot!");
-            
-            // Main loop
-            while (keepGoing != "no") 
+            while (keepGoing != "no")
             {
                 keepGoing = Console.ReadLine();
                 switch(keepGoing) 
                 {
                     case "red":
-                        if (redDice.status == "active"){
-                            redDice.status = "disabled";
+                        if (allDice[0].status == "active"){
+                            allDice[0].status = "disabled";
                             Console.WriteLine("Red has been Disabled!");
                         } else {
-                            redDice.status = "active";
+                            allDice[0].status = "active";
                             Console.WriteLine("Red has been Activated!");
                         };
                         break;
                     case "yellow":
-                        if (yellowDice.status == "active"){
-                            yellowDice.status = "disabled";
+                        if (allDice[1].status == "active"){
+                            allDice[1].status = "disabled";
                             Console.WriteLine("Yellow has been Disabled!");
                         } else {
-                            yellowDice.status = "active";
+                            allDice[1].status = "active";
                             Console.WriteLine("Yellow has been Activated!");
                         };
                         break;
                     case "green":
-                        if (greenDice.status == "active"){
-                            greenDice.status = "disabled";
+                        if (allDice[2].status == "active"){
+                            allDice[2].status = "disabled";
                             Console.WriteLine("Green has been Disabled!");
                         } else {
-                            greenDice.status = "active";
+                            allDice[2].status = "active";
                             Console.WriteLine("Green has been Activated!");
                         };
                         break;
                     case "blue":
-                        if (blueDice.status == "active"){
-                            blueDice.status = "disabled";
+                        if (allDice[3].status == "active"){
+                            allDice[3].status = "disabled";
                             Console.WriteLine("Blue has been Disabled!");
                         } else {
-                            blueDice.status = "active";
+                            allDice[3].status = "active";
                             Console.WriteLine("Blue has been Activated!");
                         };
                         break;
                     case "activate":
-                        redDice.status = "active";
-                        yellowDice.status = "active";
-                        greenDice.status = "active";
-                        blueDice.status = "active";
-                        Console.WriteLine("All are now active")
+                        for (int i = 0; i < allDice.Length; i++)
+                        {
+                            allDice[i].status = "active";
+                        }
+                        Console.WriteLine("All are now active");
+                        break;
                     case "no":
                         Console.WriteLine("Well, I will go now.");
                         Console.ReadLine();
                         break;
                 }
                 
-                // Roll!
-                redDice.rollDie();
-                yellowDice.rollDie();
-                greenDice.rollDie();
-                blueDice.rollDie();
-                whiteDice1.rollDie();
-                whiteDice2.rollDie();
+                // Roll all
+                for (int i = 0; i < allDice.Length; i++)
+                {
+                    allDice[i].rollDie();
+                };
+            
+                for (int i = 0; i < allDice.Length; i++)
+                {
+                    allDice[i].comboWhite(allDice[allDice.Length - 2].roll, allDice[allDice.Length - 1].roll);
+                };
                 
-                redDice.comboWhite(whiteDice1, whiteDice2);
-                yellowDice.comboWhite(whiteDice1, whiteDice2);
-                greenDice.comboWhite(whiteDice1, whiteDice2);
-                blueDice.comboWhite(whiteDice1, whiteDice2);
-                whiteDice1.comboWhite(whiteDice2, whiteDice2);
-                
-                
+                // Display all stuff
+                for (int i = 0; i < allDice.Length; i++)
+                {
+                   if (allDice[i].status == "active")
+                    {
+                        if (allDice[i].sortDirection == "f")
+                        {
+                            Console.WriteLine("Your " + allDice[i].name + " rolls are: " + allDice[i].results[0] + ", " + allDice[i].results[1]);
+                        } else if (allDice[i].sortDirection == "b")
+                        {
+                            Console.WriteLine("Your " + allDice[i] + " rolls are: " + allDice[i].results[1] + ", " + allDice[i].results[0]);
+                        };
+                    };
+                };
             }
         }
     }
@@ -99,19 +107,21 @@ namespace myProgram
     class Dice
     {
         public int roll;
-        public int sides;
+        private int sides;
         public int[] results = new int[2];
         public int[] resultsFlipped = new int[2];
         public string status;
-        public Random numGen = new Random();
-        private string sortDirection
+        private Random numGen = new Random();
+        public string sortDirection;
+        public string name;
         
-        public Dice(int _sides, string _sortDirection)
+        public Dice(int _sides, string _sortDirection, string _name)
         {
             roll = 0;
             status = "active";
             sides = _sides;
             sortDirection = _sortDirection;
+            name = _name;
         }
         
         public int rollDie()
