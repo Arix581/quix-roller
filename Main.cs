@@ -1,5 +1,5 @@
 // Made by Benjamin Espenschied
-// V1.4
+// V1.6
 
 using System;
 
@@ -96,7 +96,7 @@ namespace myProgram
                             Console.WriteLine("Your " + allDice[i].name + " rolls are: " + allDice[i].results[0] + ", " + allDice[i].results[1]);
                         } else if (allDice[i].sortDirection == "b")
                         {
-                            Console.WriteLine("Your " + allDice[i] + " rolls are: " + allDice[i].results[1] + ", " + allDice[i].results[0]);
+                            Console.WriteLine("Your " + allDice[i].name + " rolls are: " + allDice[i].results[1] + ", " + allDice[i].results[0]);
                         };
                     };
                 };
