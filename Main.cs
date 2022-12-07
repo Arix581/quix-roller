@@ -1,5 +1,5 @@
 // Made by Benjamin Espenschied
-// V1.8
+// V1.9
 
 using System;
 
@@ -13,14 +13,28 @@ namespace myProgram
             string keepGoing = "yes";
             
             // Set up dice
-            Dice[] allDice = new Dice[6];
             int forwardLength = 2;
-            allDice[0] = new Dice(6, "f", "red");
-            allDice[1] = new Dice(6, "f", "yellow");
             int backwardLength = 2;
-            allDice[2] = new Dice(6, "b", "green");
-            allDice[3] = new Dice(6, "b", "blue");
             int whiteLength = 2;
+            int allDiceSize = 6;
+            int totalLength = forwardLength + backwardLength + whiteLength;
+            string[] diceNames = {
+                "red",
+                "yellow",
+                "green",
+                "blue"
+            };
+            
+            Dice[] allDice = new Dice[totalLength];
+            for (int i  = 0; i < totalLength - whiteLength; i++) 
+            {
+                if (i < (forwardLength - 1))
+                {
+                    allDice[i] = new Dice(allDiceSize, "f", diceNames[i]);
+                } else {
+                    allDice[i] = new Dice(allDiceSize, "b", diceNames[i]);
+                }
+            };
             allDice[4] = new Dice(6, "f", "1st white");
             allDice[5] = new Dice(6, "f", "2nd white");
             
