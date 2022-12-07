@@ -1,5 +1,5 @@
 // Made by Benjamin Espenschied
-// V1.7
+// V1.8
 
 using System;
 
@@ -14,10 +14,13 @@ namespace myProgram
             
             // Set up dice
             Dice[] allDice = new Dice[6];
+            int forwardLength = 2;
             allDice[0] = new Dice(6, "f", "red");
             allDice[1] = new Dice(6, "f", "yellow");
+            int backwardLength = 2;
             allDice[2] = new Dice(6, "b", "green");
             allDice[3] = new Dice(6, "b", "blue");
+            int whiteLength = 2;
             allDice[4] = new Dice(6, "f", "1st white");
             allDice[5] = new Dice(6, "f", "2nd white");
             
