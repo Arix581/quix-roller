@@ -1,5 +1,5 @@
 // Made by Benjamin Espenschied
-// V1.10
+// V1.11
 
 using System;
 
@@ -16,7 +16,7 @@ namespace myProgram
             int forwardLength = 2;
             int backwardLength = 2;
             int whiteLength = 2;
-            int allDiceSize = 6;
+            int allDiceSize = 6; // Size of the Dice themselves
             int totalLength = forwardLength + backwardLength + whiteLength;
             string[] diceNames = {
                 "red",
@@ -35,9 +35,21 @@ namespace myProgram
                     allDice[i] = new Dice(allDiceSize, "b", diceNames[i]);
                 }
             };
-            allDice[4] = new Dice(6, "f", "1st white");
-            allDice[5] = new Dice(6, "f", "2nd white");
-            
+            for (int i = 0; i < whiteLength; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        allDice[forwardLength + backwardLength + i] = new Dice(allDiceSize, "f", "1st white");
+                        break;
+                    case 1:
+                        allDice[forwardLength + backwardLength + i] = new Dice(allDiceSize, "f", "2nd white");
+                        break;
+                    default:
+                        allDice[forwardLength + backwardLength + i] = new Dice(allDiceSize, "f", (i + 1) + "rd white");
+                        break;
+                }
+            }
             while (keepGoing != "no")
             {
                 keepGoing = Console.ReadLine();
