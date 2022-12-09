@@ -1,5 +1,6 @@
 // Made by Benjamin Espenschied
-// V1.11
+// V1.12
+// Need to add multisupport for whites
 
 using System;
 
