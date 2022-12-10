@@ -1,6 +1,6 @@
 // Made by Benjamin Espenschied
-// V1.12
-// Need to add multisupport for whites
+// V1.10
+// feature_white_extention: Need to add multisupport for whites
 
 using System;
 
@@ -10,7 +10,6 @@ namespace myProgram
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Dont close the program");
             string keepGoing = "yes";
             
             // Set up dice
@@ -36,7 +35,7 @@ namespace myProgram
                     allDice[i] = new Dice(allDiceSize, "b", diceNames[i]);
                 }
             };
-            for (int i = 0; i < whiteLength; i++)
+            for (int i = 0; i < whiteLength; i++) //white nameing
             {
                 switch (i)
                 {
@@ -51,6 +50,8 @@ namespace myProgram
                         break;
                 }
             }
+            
+            // Main Loop
             while (keepGoing != "no")
             {
                 keepGoing = Console.ReadLine();
@@ -120,6 +121,7 @@ namespace myProgram
                 for (int i = 0; i < allDice.Length; i++)
                 {
                    if (allDice[i].status == "active")
+                   // Your [name] rolls are: [rolls]
                     {
                         if (allDice[i].sortDirection == "f")
                         {
