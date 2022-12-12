@@ -120,9 +120,10 @@ namespace myProgram
                 // Display all stuff
                 for (int i = 0; i < allDice.Length; i++)
                 {
-                   if (allDice[i].status == "active")
-                   // Your [name] rolls are: [rolls]
+                    if (allDice[i].status == "active")
+                    // Your [name] rolls are: [rolls]
                     {
+                        Console.WriteLine("Your " + allDice[i].name + " dice rolled a " + allDice[i].roll);
                         if (allDice[i].sortDirection == "f")
                         {
                             Console.WriteLine("Your " + allDice[i].name + " rolls are: " + allDice[i].results[0] + ", " + allDice[i].results[1]);
